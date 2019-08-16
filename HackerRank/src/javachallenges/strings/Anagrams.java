@@ -1,4 +1,4 @@
-package java.strings;
+package javachallenges.strings;
 
 import java.util.HashMap;
 
@@ -62,8 +62,8 @@ Complete the function in the editor. If  and  are case-insensitive anagrams, pri
 
 Input Format
 
-The first line contains a string denoting .
-The second line contains a string denoting .
+The first line contains a strings denoting .
+The second line contains a strings denoting .
 
 Constraints
 

@@ -1,4 +1,4 @@
-package java.introduction;
+package javachallenges.introduction;
 
 import java.util.*;
 import java.text.*;

@@ -36,15 +36,15 @@ public class AlternatingCharacters {
 
 /*
 Shashank likes strings in which consecutive characters are different. For example, he likes ABABA, while he doesn't like ABAA.
-Given a string containing characters A and B only, he wants to change it into a string he likes.
-To do this, he is allowed to delete the characters in the string.
+Given a strings containing characters A and B only, he wants to change it into a strings he likes.
+To do this, he is allowed to delete the characters in the strings.
 
 Your task is to find the minimum number of required deletions.
 
 Input Format
 
 The first line contains an integer T, i.e. the number of test cases.
-The next T lines contain a string each.
+The next T lines contain a strings each.
 
 Output Format
 
@@ -53,7 +53,7 @@ For each test case, print the minimum number of deletions required.
 Constraints
 
 1≤T≤10
-1≤ length of string ≤105
+1≤ length of strings ≤105
 Sample Input
 
 5

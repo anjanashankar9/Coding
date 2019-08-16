@@ -1,4 +1,4 @@
-package java.strings;
+package javachallenges.strings;
 
 import java.util.Scanner;
 
@@ -21,7 +21,7 @@ public class StringPalindrome {
 
 
 /*
-Given a string , print Yes if it is a palindrome, print No otherwise.
+Given a strings , print Yes if it is a palindrome, print No otherwise.
 
 Constraints
 

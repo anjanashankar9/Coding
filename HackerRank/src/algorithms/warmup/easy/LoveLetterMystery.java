@@ -37,19 +37,19 @@ While modifying the letters of the word, he follows 2 rules:
  Once a letter has been changed to 'a', it can no longer be changed.
 
 Each reduction in the value of any letter is counted as a single operation.
-Find the minimum number of operations he carries out to convert a given string into a palindrome.
+Find the minimum number of operations he carries out to convert a given strings into a palindrome.
 
 
 Input Format
 The first line contains an integer T, i.e., the number of test cases.
-The next T lines will contain a string each.
+The next T lines will contain a strings each.
 
 Output Format
 A single line containing the number of minimum operations corresponding to each test case.
 
 Constraints
 1 ² T ² 10
-1 ² length of string ² 104
+1 ² length of strings ² 104
 All characters are lower cased english letters.
 
 Sample Input #00
@@ -66,7 +66,7 @@ Sample Output #00
 Explanation
 
 For the first test case, ab*c* -> ab*b* -> ab*a*.
-For the second test case, abcba is a palindromic string.
+For the second test case, abcba is a palindromic strings.
 For the third test case, abc*d* -> abc*c* -> abc*b* -> abc*a* = ab*c*a -> ab*b*a.
  */
 

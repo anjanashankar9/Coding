@@ -1,4 +1,4 @@
-package java.strings;
+package javachallenges.strings;
 
 import java.util.Scanner;
 
@@ -36,7 +36,7 @@ Determine if  is lexicographically larger than  (i.e.: does  come before  in the
 Capitalize the first letter in  and  and print them on a single line, separated by a space.
 Input Format
 
-The first line contains a string . The second line contains another string . The strings are comprised of only lowercase English letters.
+The first line contains a strings . The second line contains another strings . The strings are comprised of only lowercase English letters.
 
 Output Format
 

@@ -46,17 +46,17 @@ public class GameOfThrones {
 /*
 Dothraki are planning an attack to usurp King Robert's throne.
 King Robert learns of this conspiracy from Raven and plans to lock the single door through which the enemy can enter his kingdom.
-door. But, to lock the door he needs a key that is an anagram of a certain palindrome string.
+door. But, to lock the door he needs a key that is an anagram of a certain palindrome strings.
 
-The king has a string composed of lowercase English letters.
-Help him figure out whether any anagram of the string can be a palindrome or not.
+The king has a strings composed of lowercase English letters.
+Help him figure out whether any anagram of the strings can be a palindrome or not.
 
 Input Format
-A single line which contains the input string.
+A single line which contains the input strings.
 
 Constraints
-1≤ length of string ≤105
-Each character of the string is a lowercase English letter.
+1≤ length of strings ≤105
+Each character of the strings is a lowercase English letter.
 
 Output Format
 A single line which contains YES or NO in uppercase.
@@ -68,7 +68,7 @@ Sample Output : 01
 
 YES
 Explanation
-A palindrome permutation of the given string is bbaaabb.
+A palindrome permutation of the given strings is bbaaabb.
 
 Sample Input : 02
 
@@ -77,7 +77,7 @@ Sample Output : 02
 
 NO
 Explanation
-You can verify that the given string has no palindrome permutation.
+You can verify that the given strings has no palindrome permutation.
 
 Sample Input : 03
 
@@ -86,7 +86,7 @@ Sample Output : 03
 
 YES
 Explanation
-A palindrome permutation of the given string is ddcceefeeccdd.
+A palindrome permutation of the given strings is ddcceefeeccdd.
  */
 
 //https://www.hackerrank.com/challenges/game-of-thrones

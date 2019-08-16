@@ -1,4 +1,4 @@
-package java.introduction;
+package javachallenges.introduction;
 
 import java.io.*;
 import java.util.Calendar;
