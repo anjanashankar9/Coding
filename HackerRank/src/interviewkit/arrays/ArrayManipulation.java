@@ -2,28 +2,70 @@ package interviewkit.arrays;
 
 public class ArrayManipulation {
     // Complete the arrayManipulation function below.
+    // O(mn) solution.
     static long arrayManipulation(int n, int[][] queries) {
+        long max = 0;
+        long[] arr = new long[n];
 
+        int m = queries.length;
+        for (int i=0;i<m; i++) {
+            for(int j=queries[i][0]-1; j<queries[i][1]; j++){
+                arr[j] = arr[j]+queries[i][2];
+                if (arr[j] > max) {
+                    max = arr[j];
+                }
+            }
+        }
 
+        return max;
     }
 
+    //O(n) solution
+    //Can be done using prefix sum.
+    static long arrayManipulation2(int n, int[][] queries) {
+        long max = 0;
+        long[] arr = new long[n];
+
+        int m = queries.length;
+        /*
+        Adding to index at 0, and subtracting from index at 1
+        This will ensure that the prefix sum of indexes between these two will give the right value.
+         */
+        for (int i=0;i<m; i++) {
+            arr[queries[i][0]-1] += queries[i][2];
+            if (queries[i][1] < n)
+                arr[queries[i][1]] -= queries[i][2];
+        }
+
+        //calculating prefix sum
+        long prefixSum=0;
+        for(int i=0; i<n; i++) {
+            prefixSum += arr[i];
+            if(prefixSum > max)
+                max = prefixSum;
+        }
+
+        return max;
+    }
 
     public static void arrayManipulation(String[] args)  {
 
-        int n = 5;
+        int n = 10;
 
-        int m = 3;
+        int m = 4;
 
         int[][] queries = {
-                {1, 2, 100},
-                {2, 5, 100},
-                {3, 4, 100}
+                {2, 6, 8},
+                {3, 5, 7},
+                {1, 8, 1},
+                {5, 9, 15}
         };
 
 
 
 
-        long result = arrayManipulation(n, queries);
+        long result = arrayManipulation2(n, queries);
+        System.out.println(result);
 
     }
 }
