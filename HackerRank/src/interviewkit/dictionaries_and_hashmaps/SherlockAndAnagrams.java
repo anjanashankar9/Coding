@@ -14,7 +14,57 @@ public class SherlockAndAnagrams {
     // Complete the sherlockAndAnagrams function below.
     static int sherlockAndAnagrams(String s) {
         int pairs = 0;
+        for (int i=1; i<s.length(); i++) {
+            String[] substrings = getSubstrings(s,i);
+            for (int j=0; j<substrings.length-1; j++) {
+                for(int k=j+1; k<substrings.length; k++) {
+                    if (isAnagram(substrings[j], substrings[k]))
+                        pairs++;
+                }
+            }
+
+        }
         return pairs;
+    }
+
+    //Get all substrings of length n
+    static String[] getSubstrings(String s, int n) {
+        String[] substrings = new String[s.length() - n +1];
+
+        for (int i=0; i<=s.length()-n; i++) {
+            substrings[i] = s.substring(i,i+n);
+        }
+
+        return substrings;
+    }
+
+    static boolean isAnagram(String a, String b) {
+        Map<Character, Integer> letters = new HashMap<>();
+        if (a.length() != b.length())
+            return false;
+
+        for (int i=0; i<a.length(); i++) {
+            if (letters.containsKey(a.charAt(i))) {
+                letters.put(a.charAt(i), (letters.get(a.charAt(i)) + 1));
+            }
+            else {
+                letters.put(a.charAt(i), 1);
+            }
+        }
+
+        for (int i=0; i<b.length(); i++) {
+            if (letters.containsKey(b.charAt(i))) {
+                if (letters.get(b.charAt(i)) == 1) {
+                    letters.remove(b.charAt(i));
+                }
+                else {
+                    letters.put(b.charAt(i), letters.get(b.charAt(i)) - 1);
+                }
+            }
+            else
+                return false;
+        }
+        return true;
     }
 
     public static void sherlockAnagrams(String[] args)  {
