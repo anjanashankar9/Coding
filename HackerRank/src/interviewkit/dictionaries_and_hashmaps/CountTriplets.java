@@ -38,77 +38,47 @@ public class CountTriplets {
     // O(n) solution
     static long countTriplets(List<Long> arr, long r) {
         long found = 0;
-        HashMap<String, Long> threetripletCount= new HashMap<>();
-        HashMap<String, Long> twoTripletCount= new HashMap<>();
-        HashMap<Long, Long> oneTripletCount = new HashMap<>();
+        Map<Long, Long> leftCount = new HashMap<>();
+        Map<Long, Long> rightCount = new HashMap<>();
 
-
-        for(int i=0; i<arr.size(); i++) {
-            if (oneTripletCount.containsKey(arr.get(i))) {
-                oneTripletCount.put(arr.get(i), oneTripletCount.get(arr.get(i))+1);
+        for (int i=0; i< arr.size(); i++) {
+            leftCount.put(arr.get(i), 0L);
+            if (rightCount.containsKey(arr.get(i))) {
+                rightCount.put(arr.get(i), rightCount.get(arr.get(i))+1);
             }
             else {
-                oneTripletCount.put(arr.get(i), 1L);
+                rightCount.put(arr.get(i), 1L);
             }
-
-            Long gp1 = arr.get(i)/(r*r);
-            Long gp2 = arr.get(i)/r;
-
-
-            if (gp2 > 0) {
-                if (twoTripletCount.containsKey(gp2 + "_" + arr.get(i))) {
-                    twoTripletCount.put(gp2 + "_" + arr.get(i),
-                            twoTripletCount.get(gp2 + "_" + arr.get(i)) + 1);
-                } else {
-                    twoTripletCount.put(gp2 + "_" + arr.get(i),
-                            1L);
-                }
-
-                if (gp1 > 0) {
-                    if (threetripletCount.containsKey(gp1 + "_" + gp2 + "_" + arr.get(i))) {
-                        threetripletCount.put(gp1 + "_" + gp2 + "_" + arr.get(i),
-                                threetripletCount.get(gp1 + "_" + gp2 + "_" + arr.get(i)) + 1);
-                    } else {
-                        threetripletCount.put(gp1 + "_" + gp2 + "_" + arr.get(i), 1L);
-                    }
-                }
-            }
-
         }
 
-        for (String s:threetripletCount.keySet()) {
-            found+= threetripletCount.get(s);
+        for (int i=0; i<arr.size(); i++) {
+            Long left = arr.get(i) / r;
+            Long quotient = arr.get(i) % r;
+            Long right = arr.get(i) * r;
+
+            rightCount.put(arr.get(i), rightCount.get(arr.get(i)) - 1);
+            if (leftCount.containsKey(left) && rightCount.containsKey(right) && quotient == 0) {
+                found += (leftCount.get(left) * (rightCount.get(right)));
+            }
+            leftCount.put(arr.get(i), leftCount.get(arr.get(i)) + 1);
         }
-
-
-
 
         return found;
 
     }
 
     public static void countTriplets(String[] args) {
-
-//        int n = 6;
-//
-//        long r = 3;
-//
-//        List<Long> arr = new ArrayList<>();
-//        arr.add(Long.parseLong("1"));
-//        arr.add(Long.parseLong("3"));
-//        arr.add(Long.parseLong("9"));
-//        arr.add(Long.parseLong("9"));
-//        arr.add(Long.parseLong("27"));
-//        arr.add(Long.parseLong("81"));
+        
         int n = 4;
+        System.out.print(n);
 
-        long r = 2;
+        long r = 1;
 
         List<Long> arr = new ArrayList<>();
         arr.add(Long.parseLong("1"));
-        arr.add(Long.parseLong("2"));
-        arr.add(Long.parseLong("2"));
-        arr.add(Long.parseLong("4"));
+        arr.add(Long.parseLong("1"));
+        arr.add(Long.parseLong("1"));
+        arr.add(Long.parseLong("1"));
 
         long ans = countTriplets(arr, r);
 
