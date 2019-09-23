@@ -14,19 +14,134 @@ import static java.util.stream.Collectors.toList;
 
 public class FrequencyQueries {
 
-    // Complete the freqQuery function below.
-//    static List<Integer> freqQuery(List<List<Integer>> queries) {
-//
-//
-//    }
-//
-//    public static void frequencyQueries(String[] args) {
-//
-//        int q = 8;
-//
-//        List<List<Integer>> queries = new ArrayList<>();
-//
-//    }
+    //Complete the freqQuery function below.
+    static List<Integer> freqQuery(List<int[]> queries) {
+        List<Integer> ans = new ArrayList<>();
+        HashMap<Integer, Integer> frequencies = new HashMap<>();
+        HashMap<Integer, Integer> count = new HashMap<>();
+
+        for (int[] q: queries) {
+            Integer element = q[1];
+            switch(q[0]) {
+                case 1:
+                    //Insert
+                    int existingCount = frequencies.containsKey(element) ? frequencies.get(element) : 0;
+                    int newCount = existingCount + 1;
+                    frequencies.put(element, newCount);
+
+                    int currentCount = count.containsKey(existingCount) ? count.get(existingCount) : 1;
+                    if (existingCount > 0) {
+                        count.put(existingCount, currentCount - 1);
+                    }
+
+                    int addCount = count.containsKey(newCount) ? count.get(newCount) : 0;
+                    count.put(newCount , addCount + 1);
+                    break;
+                case 2: //Remove
+                    existingCount = frequencies.containsKey(element) ? frequencies.get(element) : 1;
+                    newCount = existingCount - 1;
+
+                    if (frequencies.containsKey(element)) {
+                        if (frequencies.get(element) == 1) {
+                            frequencies.remove(element);
+                        } else {
+                            frequencies.put(element, newCount);
+                        }
+                    }
+
+                    currentCount = count.containsKey(existingCount) ? count.get(existingCount) : 1;
+                    count.put(existingCount , currentCount - 1);
+
+                    addCount = count.containsKey(newCount) ? count.get(newCount) : 0;
+                    count.put(newCount , addCount + 1);
+                    break;
+                case 3:
+                    //Get Elements with Frequency, and add to ans
+                    if (count.containsKey(element))
+                        ans.add(1);
+                    else
+                        ans.add(0);
+
+            }
+        }
+        return ans;
+
+    }
+
+    public static void frequencyQueries(String[] args) {
+
+        int q = 8;
+
+        /*
+        3 5
+3 3
+1 10000004
+1 10000016
+1 10000011
+3 10
+         */
+        List<int[]> queries = new ArrayList<>();
+        int[] i = new int[2];
+        i[0] = 3;
+        i[1] = 5;
+        queries.add(i);
+
+        i = new int[2];
+        i[0] = 3;
+        i[1] = 3;
+        queries.add(i);
+
+        i = new int[2];
+        i[0] = 1;
+        i[1] = 10000004;
+        queries.add(i);
+
+        i = new int[2];
+        i[0] = 1;
+        i[1] = 10000016;
+        queries.add(i);
+
+        i = new int[2];
+        i[0] = 1;
+        i[1] = 10000011;
+        queries.add(i);
+
+        i = new int[2];
+        i[0] = 3;
+        i[1] = 10;
+        queries.add(i);
+
+        i = new int[2];
+        i[0] = 1;
+        i[1] = 10000006;
+        queries.add(i);
+
+        i = new int[2];
+        i[0] = 3;
+        i[1] = 5;
+        queries.add(i);
+
+
+        /*
+        1 3
+2 3
+3 2
+1 4
+1 5
+1 5
+1 4
+3 2
+2 4
+3 2
+         */
+
+        List<Integer> ans = freqQuery(queries);
+
+        for (Integer j: ans) {
+            System.out.println(j);
+        }
+
+    }
 }
 
 
