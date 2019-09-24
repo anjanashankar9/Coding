@@ -15,6 +15,7 @@ import static java.util.stream.Collectors.toList;
 public class FrequencyQueries {
 
     //Complete the freqQuery function below.
+    // O(n) solution
     static List<Integer> freqQuery(List<int[]> queries) {
         List<Integer> ans = new ArrayList<>();
         HashMap<Integer, Integer> frequencies = new HashMap<>();
@@ -47,17 +48,16 @@ public class FrequencyQueries {
                         } else {
                             frequencies.put(element, newCount);
                         }
+                        currentCount = count.containsKey(existingCount) ? count.get(existingCount) : 1;
+                        count.put(existingCount , currentCount - 1);
+
+                        addCount = count.containsKey(newCount) ? count.get(newCount) : 0;
+                        count.put(newCount , addCount + 1);
                     }
-
-                    currentCount = count.containsKey(existingCount) ? count.get(existingCount) : 1;
-                    count.put(existingCount , currentCount - 1);
-
-                    addCount = count.containsKey(newCount) ? count.get(newCount) : 0;
-                    count.put(newCount , addCount + 1);
                     break;
                 case 3:
                     //Get Elements with Frequency, and add to ans
-                    if (count.containsKey(element))
+                    if (count.containsKey(element) && count.get(element) > 0)
                         ans.add(1);
                     else
                         ans.add(0);
@@ -121,19 +121,6 @@ public class FrequencyQueries {
         i[1] = 5;
         queries.add(i);
 
-
-        /*
-        1 3
-2 3
-3 2
-1 4
-1 5
-1 5
-1 4
-3 2
-2 4
-3 2
-         */
 
         List<Integer> ans = freqQuery(queries);
 
