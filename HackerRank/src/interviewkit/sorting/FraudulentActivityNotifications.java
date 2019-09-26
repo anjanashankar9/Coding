@@ -13,13 +13,81 @@ import java.util.regex.*;
 public class FraudulentActivityNotifications {
 
     // Complete the activityNotifications function below.
+    //O(ndlogd) solution
     static int activityNotifications(int[] expenditure, int d) {
         int notifications = 0;
+
+        if (expenditure.length <= d)
+            return 0;
+        for (int i=d+1; i<expenditure.length; i++) {
+            double median = findMedian (expenditure, i-d-1, d);
+            if (expenditure[i] >= 2*median)
+                notifications++;
+        }
+
         return notifications;
+    }
+
+    private static double findMedian(int[] expenditure, int start, int d) {
+        int[] arr = new int[d];
+
+        for (int i=start, j=0; i<d; i++, j++) {
+            arr[j] = expenditure[i];
+        }
+
+        Arrays.sort(arr);
+
+        double median = 0;
+        if (arr.length % 2 == 1) {
+            median = arr[arr.length /2];
+        }
+        else {
+            median = (arr[(arr.length/2) - 1] + arr[arr.length /2])/2.0;
+        }
+        return median;
+    }
+
+    //O(n) solution
+    static int activityNotifications2(int[] expenditure, int d) {
+        int notifications = 0;
+
+        if (expenditure.length <= d)
+            return 0;
+
+        List<Integer> arr = new ArrayList<>();
+        for(int i=0; i<d; i++) {
+            arr.add(expenditure[i]);
+        }
+
+        Collections.sort(arr);
+
+        for(int i=d; i<expenditure.length; i++) {
+            int median = findMedian(arr);
+            if (expenditure[i] >= 2*median)
+                notifications++;
+            arr.remove(expenditure[i-d]);
+            addElement(arr, expenditure[i]);
+
+        }
+
+        return notifications;
+    }
+
+    static void addElement(List<Integer> arr, int i) {
 
     }
 
-    private static final Scanner scanner = new Scanner(System.in);
+    static int findMedian(List<Integer> arr) {
+        int median = 0;
+        if (arr.size() % 2 == 1) {
+            median = arr.get(arr.size() /2);
+        }
+        else {
+            median = (arr.get((arr.size()/2) - 1) + arr.get(arr.size() /2))/2;
+        }
+        return median;
+    }
+
 
     public static void fraudulentActivityNotification(String[] args){
 
@@ -29,7 +97,7 @@ public class FraudulentActivityNotifications {
 
         int[] expenditure = {2, 3, 4, 2, 3, 6, 8, 4, 5};
 
-        int result = activityNotifications(expenditure, d);
+        int result = activityNotifications2(expenditure, d);
 
         System.out.println(result);
 
