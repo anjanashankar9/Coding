@@ -47,55 +47,80 @@ public class FraudulentActivityNotifications {
         return median;
     }
 
-    //O(n) solution
+    //O(n*n) solution
     static int activityNotifications2(int[] expenditure, int d) {
         int notifications = 0;
+        int[] countSort = new int[201];
 
         if (expenditure.length <= d)
             return 0;
 
-        List<Integer> arr = new ArrayList<>();
         for(int i=0; i<d; i++) {
-            arr.add(expenditure[i]);
+            countSort[expenditure[i]]++;
         }
 
-        Collections.sort(arr);
-
         for(int i=d; i<expenditure.length; i++) {
-            int median = findMedian(arr);
+            double median = findMedian(countSort, d);
             if (expenditure[i] >= 2*median)
                 notifications++;
-            arr.remove(expenditure[i-d]);
-            addElement(arr, expenditure[i]);
+            countSort[expenditure[i-d]]--;
+            countSort[expenditure[i]]++;
 
         }
 
         return notifications;
     }
 
-    static void addElement(List<Integer> arr, int i) {
 
-    }
+    static double findMedian(int[] countSort, int d) {
 
-    static int findMedian(List<Integer> arr) {
-        int median = 0;
-        if (arr.size() % 2 == 1) {
-            median = arr.get(arr.size() /2);
+        int left = -1;
+        int right = 0;
+        if (d%2 == 0) {
+            // if d is even, median is average of 2 numbers.
+            int count = 0;
+            int mid = d/2;
+            for (int i=0 ; i<201; i++) {
+                count += countSort[i];
+                if (count >= mid) {
+                    left = i;
+                    if (count == mid)
+                        right = i+1;
+                    else
+                        right = i;
+                    return (left + right)/2.0;
+                }
+            }
+
         }
         else {
-            median = (arr.get((arr.size()/2) - 1) + arr.get(arr.size() /2))/2;
+            // if d is odd, median is the middle number.
+            int count = 0;
+            int mid = d/2;
+            for (int i=0 ; i<201; i++) {
+                count += countSort[i];
+                if (count >= mid+1)
+                    return i;
+            }
         }
-        return median;
+        return 0;
     }
 
 
     public static void fraudulentActivityNotification(String[] args){
 
-        int n = 9;
+//        int n = 9;
+//
+//        int d = 5;
+//
+//        int[] expenditure = {2, 3, 4, 2, 3, 6, 8, 4, 5};
 
-        int d = 5;
+        int n = 5;
 
-        int[] expenditure = {2, 3, 4, 2, 3, 6, 8, 4, 5};
+        int d = 4;
+
+        int[] expenditure = {1,2,3,4,4};
+
 
         int result = activityNotifications2(expenditure, d);
 
