@@ -47,7 +47,7 @@ public class FraudulentActivityNotifications {
         return median;
     }
 
-    //O(n*n) solution
+    //O(n*d) solution
     static int activityNotifications2(int[] expenditure, int d) {
         int notifications = 0;
         int[] countSort = new int[201];
