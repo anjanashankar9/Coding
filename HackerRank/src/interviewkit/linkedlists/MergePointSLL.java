@@ -70,18 +70,39 @@ public class MergePointSLL {
         SinglyLinkedListNode temp1 = head1;
         SinglyLinkedListNode temp2 = head2;
 
-        while (temp1 != temp2) {
-            if (temp1.next == null) {
-                temp1.next = head2;
-            }
-            else
+        //find length of list 1
+        int c1 = 0;
+        while (temp1.next != null) {
+            c1++;
+            temp1 = temp1.next;
+        }
+        //find length of list 2
+        int c2=0;
+        while (temp2.next != null) {
+            c2++;
+            temp2 = temp2.next;
+        }
+        temp1 = head1;
+        temp2 = head2;
+        if (c1 > c2) {
+            int c = 0;
+            while (c < (c1-c2)) {
                 temp1 = temp1.next;
-
-            if (temp2.next == null) {
-                temp2.next = head1;
+                c++;
             }
-            else
+        }
+        else if (c2 > c1) {
+            int c = 0;
+            while (c < (c2-c1)) {
                 temp2 = temp2.next;
+                c++;
+            }
+        }
+
+        //Now proceed till temp1 and temp2 are not equal
+        while (temp1 != temp2) {
+            temp1 = temp1.next;
+            temp2 = temp2.next;
         }
         return temp1.data;
     }
