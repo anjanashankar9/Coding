@@ -16,6 +16,8 @@ public class SwapNodesAlgo {
          * Write your code here.
          */
 
+        
+
     }
 
     private static final Scanner scanner = new Scanner(System.in);
