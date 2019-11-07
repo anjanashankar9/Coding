@@ -6,7 +6,6 @@ import java.text.*;
 import java.util.*;
 import java.util.regex.*;
 
-class QueueNode
 class TreeNode {
     TreeNode left;
     TreeNode right;
@@ -24,6 +23,16 @@ class TreeNode {
         this.right = right;
     }
 
+}
+
+class QueueNode {
+    TreeNode T;
+    int level;
+
+    QueueNode(TreeNode node, int level) {
+        this.T = node;
+        this.level = level;
+    }
 }
 
 public class SwapNodesAlgo {
@@ -46,6 +55,12 @@ public class SwapNodesAlgo {
                 current = node.right;
             }
         }
+
+//        System.out.println("Inorder Traversal");
+//        for (i=0; i<n; i++) {
+//            System.out.print(inorderTree[i]+ " ");
+//        }
+//        System.out.println();
         return inorderTree;
     }
 
@@ -71,13 +86,33 @@ public class SwapNodesAlgo {
                 node.right = right;
             }
         }
-
-        System.out.println("Inorder Traversal after tree creation");
-        int[] traverse = inorderTraversal(root);
-        for (int i=0; i<n; i++) {
-            System.out.print(traverse[i]+ " ");
-        }
         return root;
+    }
+
+    /*
+    Exchanges the left and right subtree of nodes at level k*n where n=1,2,3...
+     */
+    static void exchange(TreeNode root, int k) {
+        Queue<QueueNode> q = new ArrayDeque<>(n);
+
+        q.add(new QueueNode(root,1));
+        while (q.peek() != null){
+            QueueNode queueNode = q.remove();
+            TreeNode node = queueNode.T;
+            int level = queueNode.level;
+            if(node.left != null) {
+                q.add(new QueueNode(node.left, level+1));
+            }
+            if(node.right != null) {
+                q.add(new QueueNode(node.right, level+1));
+            }
+
+            if (level%k == 0) {
+                TreeNode temp = node.left;
+                node.left = node.right;
+                node.right = temp;
+            }
+        }
     }
     /*
      * Complete the swapNodes function below.
@@ -90,7 +125,8 @@ public class SwapNodesAlgo {
         int[][] solution = new int[queries.length][n];
 
         for (int i=0; i<queries.length; i++) {
-            root =
+            exchange(root, queries[i]);
+            solution[i] = inorderTraversal(root);
         }
 
         return solution;
