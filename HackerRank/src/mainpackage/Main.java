@@ -1,6 +1,9 @@
 package mainpackage;
 
-import interviewkit.sorting.FraudulentActivityNotifications;
+import interviewkit.search.HashTableIceCreamParlor;
+import interviewkit.search.SwapNodesAlgo;
+
+import java.io.IOException;
 
 /**
  * Created by ashankar1 on 3/24/15.
@@ -9,7 +12,7 @@ import interviewkit.sorting.FraudulentActivityNotifications;
 public class Main {
 
 
-    public static void main(String args[]){
-        FraudulentActivityNotifications.fraudulentActivityNotification(args);
+    public static void main(String args[]) {
+        SwapNodesAlgo.swapNodesAlgo(args);
     }
 }
