@@ -6,8 +6,79 @@ import java.text.*;
 import java.util.*;
 import java.util.regex.*;
 
+class QueueNode
+class TreeNode {
+    TreeNode left;
+    TreeNode right;
+    int data;
+
+    TreeNode(int data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+
+    TreeNode(int data, TreeNode left, TreeNode right) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
+
+}
+
 public class SwapNodesAlgo {
 
+    static int n=0;
+
+    static int[] inorderTraversal (TreeNode root) {
+        int[] inorderTree = new int[n];
+        int i=0;
+        Stack<TreeNode> s = new Stack<TreeNode>();
+        TreeNode current = root;
+        while(!s.empty() || current !=null){
+            if(current !=null){
+                s.push(current);
+                current = current.left;
+            }
+            else{
+                TreeNode node = s.pop();
+                inorderTree[i++] = node.data;
+                current = node.right;
+            }
+        }
+        return inorderTree;
+    }
+
+    static TreeNode createTree(int[][] indexes) {
+        TreeNode root = null;
+        Stack<TreeNode> stack = new Stack<>();
+        if(n > 0) {
+            root = new TreeNode(1);
+            stack.push(root);
+        }
+        while(!stack.empty()) {
+            TreeNode node = stack.pop();
+            //go left
+            if(indexes[node.data - 1][0] != -1) {
+                TreeNode left = new TreeNode(indexes[node.data - 1][0]);
+                stack.push(left);
+                node.left = left;
+            }
+            //go right
+            if(indexes[node.data - 1][1] != -1) {
+                TreeNode right = new TreeNode(indexes[node.data - 1][1]);
+                stack.push(right);
+                node.right = right;
+            }
+        }
+
+        System.out.println("Inorder Traversal after tree creation");
+        int[] traverse = inorderTraversal(root);
+        for (int i=0; i<n; i++) {
+            System.out.print(traverse[i]+ " ");
+        }
+        return root;
+    }
     /*
      * Complete the swapNodes function below.
      */
@@ -15,57 +86,46 @@ public class SwapNodesAlgo {
         /*
          * Write your code here.
          */
+        TreeNode root = createTree(indexes);
+        int[][] solution = new int[queries.length][n];
 
-        
+        for (int i=0; i<queries.length; i++) {
+            root =
+        }
 
+        return solution;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+    public static void swapNodesAlgo(String[] args) {
 
-        int n = Integer.parseInt(scanner.nextLine().trim());
+        n = 5;
 
         int[][] indexes = new int[n][2];
 
-        for (int indexesRowItr = 0; indexesRowItr < n; indexesRowItr++) {
-            String[] indexesRowItems = scanner.nextLine().split(" ");
+        indexes[0][0] = 2;
+        indexes[0][1] = 3;
 
-            for (int indexesColumnItr = 0; indexesColumnItr < 2; indexesColumnItr++) {
-                int indexesItem = Integer.parseInt(indexesRowItems[indexesColumnItr].trim());
-                indexes[indexesRowItr][indexesColumnItr] = indexesItem;
-            }
-        }
+        indexes[1][0] = -1;
+        indexes[1][1] = 4;
 
-        int queriesCount = Integer.parseInt(scanner.nextLine().trim());
+        indexes[2][0] = -1;
+        indexes[2][1] = 5;
+
+        indexes[3][0] = -1;
+        indexes[3][1] = -1;
+
+        indexes[4][0] = -1;
+        indexes[4][1] = -1;
+
+        int queriesCount = 1;
 
         int[] queries = new int[queriesCount];
 
-        for (int queriesItr = 0; queriesItr < queriesCount; queriesItr++) {
-            int queriesItem = Integer.parseInt(scanner.nextLine().trim());
-            queries[queriesItr] = queriesItem;
-        }
+        queries[0] = 2;
 
-        int[][] result = swapNodes(indexes, queries);
-
-        for (int resultRowItr = 0; resultRowItr < result.length; resultRowItr++) {
-            for (int resultColumnItr = 0; resultColumnItr < result[resultRowItr].length; resultColumnItr++) {
-                bufferedWriter.write(String.valueOf(result[resultRowItr][resultColumnItr]));
-
-                if (resultColumnItr != result[resultRowItr].length - 1) {
-                    bufferedWriter.write(" ");
-                }
-            }
-
-            if (resultRowItr != result.length - 1) {
-                bufferedWriter.write("\n");
-            }
-        }
-
-        bufferedWriter.newLine();
-
-        bufferedWriter.close();
+        swapNodes(indexes, queries);
     }
 }
 
