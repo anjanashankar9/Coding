@@ -31,11 +31,11 @@ public class Pairs {
         HashSet<Integer> count = new HashSet<>();
 
         for (int i=0; i<arr.length; i++) {
-            int value = (int) Math.abs(Long.valueOf(k) + Long.valueOf(arr[i]));
+            int value = k + arr[i];
             if (count.contains(value)) {
                 pairs++;
             }
-            value = Math.abs(k - arr[i]);
+            value = arr[i] - k ;
             if (count.contains(value)) {
                 pairs++;
             }
@@ -65,7 +65,7 @@ public class Pairs {
             arr[i] = arrItem;
         }
 
-        int result = pairs(k, arr);
+        int result = pairs2(k, arr);
 
         System.out.println(result);
 
