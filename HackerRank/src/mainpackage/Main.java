@@ -1,6 +1,7 @@
 package mainpackage;
 
 import interviewkit.search.HashTableIceCreamParlor;
+import interviewkit.search.Pairs;
 import interviewkit.search.SwapNodesAlgo;
 
 import java.io.IOException;
@@ -13,6 +14,6 @@ public class Main {
 
 
     public static void main(String args[]) {
-        SwapNodesAlgo.swapNodesAlgo(args);
+        Pairs.pairs(args);
     }
 }
