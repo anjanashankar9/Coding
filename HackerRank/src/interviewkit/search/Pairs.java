@@ -31,7 +31,7 @@ public class Pairs {
         HashSet<Integer> count = new HashSet<>();
 
         for (int i=0; i<arr.length; i++) {
-            int value = k + arr[i];
+            int value = arr[i] + k;
             if (count.contains(value)) {
                 pairs++;
             }
