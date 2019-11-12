@@ -3,6 +3,7 @@ package mainpackage;
 import interviewkit.search.HashTableIceCreamParlor;
 import interviewkit.search.Pairs;
 import interviewkit.search.SwapNodesAlgo;
+import interviewkit.search.TripleSum;
 
 import java.io.IOException;
 
@@ -14,6 +15,6 @@ public class Main {
 
 
     public static void main(String args[]) {
-        Pairs.pairs(args);
+        TripleSum.tripleSum(args);
     }
 }
