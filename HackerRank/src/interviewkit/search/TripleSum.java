@@ -1,36 +1,8 @@
 package interviewkit.search;
 
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
 
 public class TripleSum {
-
-    //TODO: Possible failure incase of dup elements in arr
-    static long search(int[] arr, int start, int end, int k) {
-        if (start == end) {
-            if (arr[start] <= k) {
-                return start + 1;
-            }
-            else
-                return 0;
-        }
-
-        int mid = (start+end) /2;
-        if(arr[mid] == k) {
-            return mid+1;
-        }
-
-        if (arr[mid] > k) {
-            return search(arr,start, mid-1, k);
-        }
-        else
-            return search(arr, mid+1, end, k);
-    }
 
     // Complete the triplets function below.
     static long triplets(int[] a, int[] b, int[] c) {
@@ -41,50 +13,91 @@ public class TripleSum {
         Arrays.sort(b);
         Arrays.sort(c);
 
-        for (int i=0; i< a.length; i++) {
-            System.out.print(a[i] + " ");
-        }
-        System.out.println();
+        int lenA = removeDuplicates(a);
+        int lenB = removeDuplicates(b);
+        int lenC = removeDuplicates(c);
 
-        for (int i=0; i< b.length; i++) {
-            System.out.print(b[i] + " ");
-        }
-        System.out.println();
+        int i = 0, j = 0, k = 0;
 
-        for (int i=0; i< c.length; i++) {
-            System.out.print(c[i] + " ");
+        while(i < lenB) {
+            while (j < lenA && a[j] <= b[i] )
+                j++;
+            while ( k < lenC && c[k] <= b[i])
+                k++;
+            triplets += (long) j * k;
+            i++;
         }
-        System.out.println();
-
-        for (int i=0; i< b.length; i++) {
-            if (i > 0 && b[i] != b[i-1])
-                triplets = triplets + (search(a, 0, a.length-1, b[i]) *
-                    search(c, 0, c.length-1, b[i]) );
-        }
-
 
         return triplets;
 
     }
 
+    private static int removeDuplicates(int[] arr) {
+        int n = arr.length;
+        if (n==0 || n==1){
+            return n;
+        }
+        int[] temp = new int[n];
+        int j = 0;
+        for (int i=0; i<n-1; i++){
+            if (arr[i] != arr[i+1]){
+                temp[j++] = arr[i];
+            }
+        }
+        temp[j++] = arr[n-1];
+        // Changing original array
+        for (int i=0; i<j; i++){
+            arr[i] = temp[i];
+        }
+        return j;
+    }
+
+
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void tripleSum(String[] args) {
 
-        int lena = 3;
+        String[] lenaLenbLenc = scanner.nextLine().split(" ");
 
-        int lenb = 3;
+        int lena = Integer.parseInt(lenaLenbLenc[0]);
 
-        int lenc = 3;
+        int lenb = Integer.parseInt(lenaLenbLenc[1]);
 
-        int[] arra = {1,4,5};
+        int lenc = Integer.parseInt(lenaLenbLenc[2]);
 
-        int[] arrb = {2,3, 3};
+        int[] arra = new int[lena];
 
-        int[] arrc = {1,2,3};
+        String[] arraItems = scanner.nextLine().split(" ");
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int i = 0; i < lena; i++) {
+            int arraItem = Integer.parseInt(arraItems[i]);
+            arra[i] = arraItem;
+        }
+
+        int[] arrb = new int[lenb];
+
+        String[] arrbItems = scanner.nextLine().split(" ");
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int i = 0; i < lenb; i++) {
+            int arrbItem = Integer.parseInt(arrbItems[i]);
+            arrb[i] = arrbItem;
+        }
+
+        int[] arrc = new int[lenc];
+
+        String[] arrcItems = scanner.nextLine().split(" ");
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int i = 0; i < lenc; i++) {
+            int arrcItem = Integer.parseInt(arrcItems[i]);
+            arrc[i] = arrcItem;
+        }
 
         long ans = triplets(arra, arrb, arrc);
-
         System.out.println(ans);
+        scanner.close();
     }
 }
 
