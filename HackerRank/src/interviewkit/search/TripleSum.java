@@ -57,7 +57,8 @@ public class TripleSum {
         System.out.println();
 
         for (int i=0; i< b.length; i++) {
-            triplets = triplets + (search(a, 0, a.length-1, b[i]) *
+            if (i > 0 && b[i] != b[i-1])
+                triplets = triplets + (search(a, 0, a.length-1, b[i]) *
                     search(c, 0, c.length-1, b[i]) );
         }
 
@@ -71,13 +72,13 @@ public class TripleSum {
 
         int lena = 3;
 
-        int lenb = 2;
+        int lenb = 3;
 
         int lenc = 3;
 
-        int[] arra = {1,3,5};
+        int[] arra = {1,4,5};
 
-        int[] arrb = {2,3};
+        int[] arrb = {2,3, 3};
 
         int[] arrc = {1,2,3};
 
