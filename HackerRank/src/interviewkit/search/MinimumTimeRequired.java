@@ -13,9 +13,64 @@ public class MinimumTimeRequired {
     // Complete the minTime function below.
     static long minTime(long[] machines, long goal) {
         long minTime = 0;
+        Arrays.sort(machines);
+        int n = machines.length;
+
+        long max = (long)Math.ceil((goal* machines[n-1] / n));
+        long min = (long)Math.floor((goal* machines[0] / n));
+
+        minTime = modifiedBinarySearch(min, max, goal, machines);
         return minTime;
 
     }
+
+    static long modifiedBinarySearch(long min, long max, long goal, long[] machines) {
+        if (min > max)
+            if (getProductionInXDays(max, machines) == goal)
+                return max;
+            else
+                return max+1;
+        long mid = (min+max)/2;
+        long production = getProductionInXDays(mid, machines);
+        if (production == goal) {
+            //Need to go one day further below and see if one day before also same goal could be produced.
+            long i=mid;
+            while(i >= min) {
+                if (production == goal)
+                    i = i-1;
+                else
+                    return i+1;
+
+            }
+            return mid;
+        }
+        else if (production > goal)
+            return modifiedBinarySearch(min, mid-1, goal, machines);
+        else
+            return modifiedBinarySearch(mid+1, max, goal, machines);
+    }
+
+    static long getProductionInXDays(long days, long[] machines) {
+        long production = 0;
+        int n = machines.length;
+        for (int i=0; i<n; i++) {
+            production += Math.floor(days/machines[i]);
+        }
+        return production;
+    }
+
+//    public static void minimumTimeRequired(String[] args) {
+//
+//        int n = 3;
+//
+//        long goal = 10;
+//
+//        long[] machines = {1,3, 4};
+//
+//        long ans = minTime(machines, goal);
+//
+//        System.out.println(ans);
+//    }
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -38,9 +93,7 @@ public class MinimumTimeRequired {
         }
 
         long ans = minTime(machines, goal);
-
         System.out.println(ans);
-
         scanner.close();
     }
 }
