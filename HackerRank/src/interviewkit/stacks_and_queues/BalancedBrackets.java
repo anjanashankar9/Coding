@@ -18,19 +18,19 @@ public class BalancedBrackets {
                 stack.push(s.charAt(i));
             else {
                 if (s.charAt(i) == ']') {
-                    if (stack.peek() == '[')
+                    if (!stack.empty() && stack.peek() == '[')
                         stack.pop();
                     else
                         return "NO";
                 }
                 else if (s.charAt(i) == '}') {
-                    if (stack.peek() == '{')
+                    if (!stack.empty() && stack.peek() == '{')
                         stack.pop();
                     else
                         return "NO";
                 }
                 else if (s.charAt(i) == ')') {
-                    if (stack.peek() == '(')
+                    if (!stack.empty() && stack.peek() == '(')
                         stack.pop();
                     else
                         return "NO";
@@ -48,13 +48,12 @@ public class BalancedBrackets {
 
         int t = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
         for (int tItr = 0; tItr < t; tItr++) {
             String s = scanner.nextLine();
-
+            System.out.println();
             String result = isBalanced(s);
 
-            System.out.println(result);
+            System.out.print(result);
         }
 
         scanner.close();
