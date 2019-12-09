@@ -12,38 +12,27 @@ public class Queues_Stacks {
         Stack<T> stackNewestOnTop = new Stack<T>();
         Stack<T> stackOldestOnTop = new Stack<T>();
 
-        boolean oldestFlag = true;
-
         public void enqueue(T value) { // Push onto newest stack
-            if (oldestFlag) {
-                stackOldestOnTop.push(value);
-                while (!stackOldestOnTop.empty()) {
-                    stackNewestOnTop.push(stackOldestOnTop.pop());
-                }
-                oldestFlag = false;
-            }
-            else {
-                while (!stackNewestOnTop.empty()) {
-                    stackOldestOnTop.push(stackNewestOnTop.pop());
-                }
-                stackNewestOnTop.push(value);
-                oldestFlag = true;
-            }
+            stackNewestOnTop.push(value);
         }
 
         public T peek() {
-            if (oldestFlag)
-                return stackOldestOnTop.peek();
-            else
-                return stackNewestOnTop.peek();
+            if (stackOldestOnTop.empty()) {
+                while(!stackNewestOnTop.empty()) {
+                    stackOldestOnTop.push(stackNewestOnTop.pop());
+                }
+            }
+            return stackOldestOnTop.peek();
 
         }
 
         public T dequeue() {
-            if (oldestFlag)
-                return stackOldestOnTop.pop();
-            else
-                return stackNewestOnTop.pop();
+            if (stackOldestOnTop.empty()) {
+                while(!stackNewestOnTop.empty()) {
+                    stackOldestOnTop.push(stackNewestOnTop.pop());
+                }
+            }
+            return stackOldestOnTop.pop();
         }
     }
 
