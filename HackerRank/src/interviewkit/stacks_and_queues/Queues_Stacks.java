@@ -1,11 +1,8 @@
 package interviewkit.stacks_and_queues;
 
 
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class Queues_Stacks {
     public static class MyQueue<T> {
