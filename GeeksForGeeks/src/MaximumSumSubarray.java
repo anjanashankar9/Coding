@@ -9,7 +9,7 @@ Sum = 9
 public class MaximumSumSubarray {
 
     //Brute Force - O(n*n*n)
-    public static int bruteForce(int[] arr) {
+     static int bruteForce(int[] arr) {
         int n = arr.length;
         int max = Integer.MIN_VALUE;
         for(int i=0; i<n; i++) {
@@ -28,7 +28,7 @@ public class MaximumSumSubarray {
 
 
     //Almost Brute Force - O(n*n)
-    public static int orderNSquare(int[] arr) {
+     static int orderNSquare(int[] arr) {
         int n = arr.length;
         int max = Integer.MIN_VALUE;
         for(int i=0; i<n; i++) {
@@ -46,9 +46,58 @@ public class MaximumSumSubarray {
         return max;
     }
 
+    static int maxCrossingSum(int[] arr, int l, int m, int h) {
+         int sum = 0;
+         int left_sum = Integer.MIN_VALUE;
+         for (int i=m; i>=0; i--) {
+             sum += arr[i];
+             if(sum>left_sum) {
+                 left_sum = sum;
+             }
+         }
+
+         sum = 0;
+         int right_sum = Integer.MIN_VALUE;
+         for(int i=m+1; i<= h; i++) {
+             sum += arr[i];
+             if (sum > right_sum) {
+                 right_sum = sum;
+             }
+         }
+
+         return Math.max(
+                 left_sum+right_sum, Math.max(
+                         left_sum, right_sum
+                 )
+         );
+    }
+    static int maximumSumSubarrayDivideAndConquerHelper(int[] arr, int l, int h) {
+        //Base case - only one element
+        if(l==h)
+            return arr[l];
+
+        int m = (l+h)/2;
+
+        /* Return maximum of following three possible cases:
+           a) Maximum subarray sum in left half
+           b) Maximum subarray sum in right half
+           c) Maximum subarray sum such that the subarray crosses the midpoint
+        */
+        return Math.max(
+                Math.max(maximumSumSubarrayDivideAndConquerHelper(arr, l, m),
+                        maximumSumSubarrayDivideAndConquerHelper(arr, m+1, h)),
+                maxCrossingSum(arr, l, m, h)
+        );
+    }
+
+    // Divide and Conquer - O(nlogn)
+    static int maximumSumSubarrayDivideAndConquer(int[] arr) {
+        return maximumSumSubarrayDivideAndConquerHelper(arr, 0, arr.length-1);
+    }
+
     public static void maximumSumSubarray(String[] args) {
         int []input = new int[]{-2, -3, 4, -1, -2, 1, 5, -3};
-        int result = bruteForce(input);
+        int result = maximumSumSubarrayDivideAndConquer(input);
         System.out.println(result);
     }
 }
