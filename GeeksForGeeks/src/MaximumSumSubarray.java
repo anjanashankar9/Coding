@@ -27,6 +27,25 @@ public class MaximumSumSubarray {
     }
 
 
+    //Almost Brute Force - O(n*n)
+    public static int orderNSquare(int[] arr) {
+        int n = arr.length;
+        int max = Integer.MIN_VALUE;
+        for(int i=0; i<n; i++) {
+            int sum = arr[i];
+            if (sum > max) {
+                max = sum;
+            }
+            for (int j=i+1; j<n; j++) {
+                sum += arr[j];
+                if (sum > max) {
+                    max = sum;
+                }
+            }
+        }
+        return max;
+    }
+
     public static void maximumSumSubarray(String[] args) {
         int []input = new int[]{-2, -3, 4, -1, -2, 1, 5, -3};
         int result = bruteForce(input);
