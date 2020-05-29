@@ -48,26 +48,26 @@ public class MaximumSumSubarray {
 
     static int maxCrossingSum(int[] arr, int l, int m, int h) {
          int sum = 0;
-         int left_sum = Integer.MIN_VALUE;
+         int leftSum = Integer.MIN_VALUE;
          for (int i=m; i>=0; i--) {
              sum += arr[i];
-             if(sum>left_sum) {
-                 left_sum = sum;
+             if(sum > leftSum) {
+                 leftSum = sum;
              }
          }
 
          sum = 0;
-         int right_sum = Integer.MIN_VALUE;
+         int rightSum = Integer.MIN_VALUE;
          for(int i=m+1; i<= h; i++) {
              sum += arr[i];
-             if (sum > right_sum) {
-                 right_sum = sum;
+             if (sum > rightSum) {
+                 rightSum = sum;
              }
          }
 
          return Math.max(
-                 left_sum+right_sum, Math.max(
-                         left_sum, right_sum
+                 leftSum + rightSum, Math.max(
+                         leftSum, rightSum
                  )
          );
     }
@@ -95,9 +95,24 @@ public class MaximumSumSubarray {
         return maximumSumSubarrayDivideAndConquerHelper(arr, 0, arr.length-1);
     }
 
+    // Using Kadane's Algorithm - O(n)
+    static int maximumSumSubarrayKadane(int[] arr) {
+         int maxSoFar = Integer.MIN_VALUE;
+         int maxEndingHere = 0;
+
+         for (int i=0; i<arr.length; i++) {
+             maxEndingHere = maxEndingHere + arr[i];
+             if (maxSoFar < maxEndingHere)
+                 maxSoFar = maxEndingHere;
+             if (maxEndingHere < 0)
+                 maxEndingHere = 0;
+         }
+        return maxSoFar;
+    }
+
     public static void maximumSumSubarray(String[] args) {
-        int []input = new int[]{-2, -3, 4, -1, -2, 1, 5, -3};
-        int result = maximumSumSubarrayDivideAndConquer(input);
+        int []input = new int[]{-2, -3, -4, -1, -2, -1, -5, -3};
+        int result = maximumSumSubarrayKadane(input);
         System.out.println(result);
     }
 }
