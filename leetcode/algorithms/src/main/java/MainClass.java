@@ -1,4 +1,4 @@
-import easy.GreatestNumberOfCandies;
+import easy.GreatestElementOnRight;
 
 /**
  * @Author Anjana Shankar
@@ -6,6 +6,6 @@ import easy.GreatestNumberOfCandies;
  */
 public class MainClass {
     public static void main(String[] args) {
-        GreatestNumberOfCandies.greatestNumberOfCandies(args);
+        GreatestElementOnRight.greatestElementOnRight(args);
     }
 }
