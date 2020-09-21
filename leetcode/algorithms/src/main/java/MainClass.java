@@ -1,4 +1,4 @@
-import easy.JewelsAndStones;
+import easy.StepsToReduceToZero;
 
 /**
  * @Author Anjana Shankar
@@ -6,6 +6,6 @@ import easy.JewelsAndStones;
  */
 public class MainClass {
     public static void main(String[] args) {
-        JewelsAndStones.jewelsAndStones(args);
+        StepsToReduceToZero.numberOfSteps(args);
     }
 }
