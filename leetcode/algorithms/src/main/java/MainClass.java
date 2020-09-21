@@ -1,4 +1,4 @@
-import easy.GreatestElementOnRight;
+import easy.JewelsAndStones;
 
 /**
  * @Author Anjana Shankar
@@ -6,6 +6,6 @@ import easy.GreatestElementOnRight;
  */
 public class MainClass {
     public static void main(String[] args) {
-        GreatestElementOnRight.greatestElementOnRight(args);
+        JewelsAndStones.jewelsAndStones(args);
     }
 }
