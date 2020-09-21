@@ -1,4 +1,4 @@
-import easy.ShuffleArray;
+import easy.GreatestNumberOfCandies;
 
 /**
  * @Author Anjana Shankar
@@ -6,6 +6,6 @@ import easy.ShuffleArray;
  */
 public class MainClass {
     public static void main(String[] args) {
-        ShuffleArray.shuffleArray(args);
+        GreatestNumberOfCandies.greatestNumberOfCandies(args);
     }
 }
