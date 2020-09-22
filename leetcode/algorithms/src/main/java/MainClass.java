@@ -1,3 +1,4 @@
+import easy.RelativeSortArray;
 import easy.ShuffleString;
 
 /**
@@ -6,6 +7,6 @@ import easy.ShuffleString;
  */
 public class MainClass {
     public static void main(String[] args) {
-        ShuffleString.shuffleString(args);
+        RelativeSortArray.relativeSortArray(args);
     }
 }
