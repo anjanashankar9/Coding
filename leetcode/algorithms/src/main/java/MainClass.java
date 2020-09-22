@@ -1,4 +1,4 @@
-import easy.ReverseBits;
+import easy.ShuffleString;
 
 /**
  * @Author Anjana Shankar
@@ -6,6 +6,6 @@ import easy.ReverseBits;
  */
 public class MainClass {
     public static void main(String[] args) {
-        ReverseBits.reverseBits(args);
+        ShuffleString.shuffleString(args);
     }
 }
