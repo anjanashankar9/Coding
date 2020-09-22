@@ -1,4 +1,4 @@
-import easy.StepsToReduceToZero;
+import easy.ReverseBits;
 
 /**
  * @Author Anjana Shankar
@@ -6,6 +6,6 @@ import easy.StepsToReduceToZero;
  */
 public class MainClass {
     public static void main(String[] args) {
-        StepsToReduceToZero.numberOfSteps(args);
+        ReverseBits.reverseBits(args);
     }
 }
