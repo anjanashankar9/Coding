@@ -1,5 +1,4 @@
-import easy.RelativeSortArray;
-import easy.ShuffleString;
+import easy.GoodPairs;
 
 /**
  * @Author Anjana Shankar
@@ -7,6 +6,6 @@ import easy.ShuffleString;
  */
 public class MainClass {
     public static void main(String[] args) {
-        RelativeSortArray.relativeSortArray(args);
+        GoodPairs.goodPairs(args);
     }
 }
