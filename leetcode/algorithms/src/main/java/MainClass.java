@@ -1,7 +1,4 @@
-import easy.SmallerThanCurrentNumber;
-
-import java.util.ArrayList;
-import java.util.List;
+import easy.SubtractProductAndSum;
 
 /**
  * @Author Anjana Shankar
@@ -13,6 +10,6 @@ public class MainClass {
     }
 
     public static void main(String[] args) {
-        SmallerThanCurrentNumber.smallerThanCurrentNumber(args);
+        SubtractProductAndSum.subtractProductAndSum(args);
     }
 }
