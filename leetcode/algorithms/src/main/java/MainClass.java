@@ -1,4 +1,4 @@
-import easy.SubtractProductAndSum;
+import medium.GroupThePeople;
 
 /**
  * @Author Anjana Shankar
@@ -10,6 +10,6 @@ public class MainClass {
     }
 
     public static void main(String[] args) {
-        SubtractProductAndSum.subtractProductAndSum(args);
+        GroupThePeople.groupThePeople(args);
     }
 }
