@@ -12,6 +12,7 @@
         <module>hackerrank</module>
         <module>leetcode</module>
         <module>geeksforgeeks</module>
+        <module>crackthecodinginterview</module>
     </modules>
 
     <build>
