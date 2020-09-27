@@ -51,7 +51,7 @@ public class CheckPermutation {
     }
 
 
-    public static void main(String[] args) {
+    public static void checkPermutation(String[] args) {
         String s1 = "abc";
         String s2 = "cas";
 
