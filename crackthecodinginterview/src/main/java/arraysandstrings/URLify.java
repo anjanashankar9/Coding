@@ -43,7 +43,7 @@ public class URLify {
     private String urlifyString(String s,int n) {
         return s.substring(0,n).replaceAll(" ", "%20");
     }
-    public static void main(String[] args) {
+    public static void urlIfy(String[] args) {
         String s = "Mr John Smith     ";
         int n = 15;
 
