@@ -1,4 +1,4 @@
-import easy.XORArray;
+import easy.MatrixDiagonalSum;
 
 /**
  * @Author Anjana Shankar
@@ -7,6 +7,6 @@ import easy.XORArray;
 public class MainClass {
 
     public static void main(String[] args) {
-        XORArray.xorOperation(args);
+        MatrixDiagonalSum.matrixDiagnoalSum(args);
     }
 }
