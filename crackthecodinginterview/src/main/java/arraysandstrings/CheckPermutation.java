@@ -1,5 +1,6 @@
 package arraysandstrings;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -37,11 +38,24 @@ public class CheckPermutation {
         return true;
     }
 
+    private boolean isPermutationWithSorting(String s1, String s2) {
+        if (s1.length() != s2.length()) {
+            return false;
+        }
+
+        char[] c1 = s1.toCharArray();
+        char[] c2 = s2.toCharArray();
+        Arrays.sort(c1);
+        Arrays.sort(c2);
+        return new String(c1).equals(new String(c2));
+    }
+
+
     public static void main(String[] args) {
         String s1 = "abc";
-        String s2 = "caa";
+        String s2 = "cas";
 
-        System.out.println(new CheckPermutation().isPermutation(s1,s2));
+        System.out.println(new CheckPermutation().isPermutationWithSorting(s1,s2));
     }
 }
 
