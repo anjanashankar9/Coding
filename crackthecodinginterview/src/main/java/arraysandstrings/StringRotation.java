@@ -19,7 +19,7 @@ public class StringRotation {
         return s.contains(s2);
     }
 
-    public static void main(String args[]) {
+    public static void stringRotation(String args[]) {
         String s1 = "waterbottle";
         String s2 = "erbottlewat";
         System.out.println(new StringRotation().isRotatedString(s1, s2));
