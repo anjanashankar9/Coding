@@ -47,7 +47,7 @@ public class OneAway {
 
         return true;
     }
-    public static void main(String[] args) {
+    public static void oneAway(String[] args) {
         String s1 = "pales";
         String s2 = "pale";
         System.out.println(new OneAway().isOneAway(s1,s2));
