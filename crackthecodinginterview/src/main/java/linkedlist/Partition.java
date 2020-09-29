@@ -5,6 +5,42 @@ package linkedlist;
  * @Created 2020-09-28
  */
 public class Partition {
+    private Node partition(Node head, int x) {
+        Node beforeStart = null;
+        Node beforeEnd = null;
+
+        Node afterStart = null;
+        Node afterEnd = null;
+
+        Node temp = head;
+        while(temp != null) {
+            if(temp.data < x) {
+                if(beforeStart == null) {
+                    beforeStart = beforeEnd = temp;
+                }
+                else {
+                    beforeEnd.next = temp;
+                    beforeEnd = temp;
+                }
+            }
+            else {
+                if(afterStart == null) {
+                    afterStart = afterEnd = temp;
+                }
+                else {
+                    afterEnd.next = temp;
+                    afterEnd = temp;
+                }
+            }
+            temp = temp.next;
+        }
+        if(beforeEnd == null) {
+            return afterStart;
+        }
+
+        beforeEnd.next = afterStart;
+        return beforeStart;
+    }
 }
 
 /*
