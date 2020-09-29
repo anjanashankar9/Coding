@@ -5,6 +5,30 @@ package linkedlist;
  * @Created 2020-09-28
  */
 public class SumLists {
+    private Node getSum(Node head1, Node head2) {
+        return addList(head1, head2, 0);
+    }
+
+    private Node addList(Node list1, Node list2, int carry) {
+        if(list1 == null && list2 == null && carry == 0) {
+            return null;
+        }
+        Node result = new Node();
+        int value = carry;
+        if(list1 != null) {
+            value += list1.data;
+        }
+        if(list2 != null) {
+            value += list2.data;
+        }
+        result.data = value % 10;
+
+        Node nextResult = addList(list1 == null ? null : list1.next,
+                list2 == null ? null : list2.next,
+                value >= 10 ? 1: 0);
+        result.next = nextResult;
+        return result;
+    }
 }
 
 /*
