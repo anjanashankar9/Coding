@@ -5,6 +5,38 @@ package linkedlist;
  * @Created 2020-09-28
  */
 public class DeleteNode {
+    // When pointer to Head is given
+    private Node deleteNode(Node head, Node toDelete) {
+        if(head == null) {
+            return null;
+        }
+        if(head.next == null && head != toDelete) {
+            return head;
+        }
+
+        Node ptr = head;
+        Node prev = null;
+
+        while(ptr.next != null) {
+            if(ptr.next == toDelete) {
+                prev.next = ptr.next;
+                return head;
+            }
+            prev=ptr;
+            ptr = ptr.next;
+        }
+        return head;
+    }
+
+    private boolean deleteNodeWithoutHead(Node toDelete) {
+        if(toDelete == null || toDelete.next == null) {
+            return false;
+        }
+        Node next = toDelete.next;
+        toDelete.data = next.data;
+        toDelete.next = next.next;
+        return true;
+    }
 }
 
 /*
