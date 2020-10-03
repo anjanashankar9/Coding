@@ -5,6 +5,7 @@ package bitmanipulation;
  * @Created 2020-09-29
  */
 public class BinaryToString {
+
 }
 /*
 Given a real number between O and 1 (e.g., 0.72)

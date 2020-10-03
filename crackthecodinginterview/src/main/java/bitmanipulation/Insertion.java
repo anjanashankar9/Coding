@@ -5,6 +5,21 @@ package bitmanipulation;
  * @Created 2020-09-29
  */
 public class Insertion {
+    int updateBits(int m, int n, int i, int j) {
+        // Create a mask to clear between bits i and j in n.
+        int allOnes = ~0; // All 1s.
+        int left = allOnes <<(j+1);
+        int right = ((1 << i)-1);
+        int mask = left|right;
+
+        int nClear = n & mask;
+        int mShifted = m << i;
+        return nClear | mShifted;
+
+    }
+    public static void main(String[] args) {
+
+    }
 }
 /*
 You are given two 32-bit numbers, N and M, and two bit positions, i and j.
