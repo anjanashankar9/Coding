@@ -13,6 +13,7 @@
         <module>leetcode</module>
         <module>geeksforgeeks</module>
         <module>crackthecodinginterview</module>
+        <module>miscellaneous</module>
     </modules>
 
     <build>
