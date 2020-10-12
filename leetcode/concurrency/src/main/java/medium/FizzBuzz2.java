@@ -21,8 +21,8 @@ public class FizzBuzz2 {
             while(count%3!=0) wait();
             if(count%5 != 0) {
                 printFizz.run();
-                count++;
             }
+            count++;
             notifyAll();
         }
     }
@@ -33,8 +33,8 @@ public class FizzBuzz2 {
             while(count%5!=0) wait();
             if(count%3 != 0) {
                 printBuzz.run();
-                count++;
             }
+            count++;
             notifyAll();
         }
     }

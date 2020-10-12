@@ -11,64 +11,66 @@ import java.util.function.IntConsumer;
 public class FizzBuzz {
     private int n;
     private int count;
-    private final Lock mutex = new ReentrantLock();
+    private Object lock;
 
     public FizzBuzz(int n) {
         this.n = n;
         this.count = 1;
+        this.lock = new Object();
     }
 
     // printFizz.run() outputs "fizz".
     public void fizz(Runnable printFizz) throws InterruptedException {
-        while(count<n) {
-            mutex.lock();
-            if(count%3==0 && count%5 != 0) {
-                printFizz.run();
-                count++;
+        while(count<=n) {
+            synchronized (lock) {
+                if (count<=n && count % 3 == 0 && count % 5 != 0) {
+                    printFizz.run();
+                    count++;
+                }
             }
-            mutex.unlock();
+
         }
     }
 
     // printBuzz.run() outputs "buzz".
     public void buzz(Runnable printBuzz) throws InterruptedException {
-        while(count<n) {
-            mutex.lock();
-            if(count%5==0 && count%3 != 0) {
-                printBuzz.run();
-                count++;
+        while(count<=n) {
+            synchronized (lock) {
+                if (count<=n && count % 5 == 0 && count % 3 != 0) {
+                    printBuzz.run();
+                    count++;
+                }
             }
-            mutex.unlock();
         }
     }
 
     // printFizzBuzz.run() outputs "fizzbuzz".
     public void fizzbuzz(Runnable printFizzBuzz) throws InterruptedException {
-        while(count<n) {
-            mutex.lock();
-            if(count%5==0 && count%3 == 0) {
-                printFizzBuzz.run();
-                count++;
+        while(count<=n) {
+            synchronized (lock) {
+                if (count<=n && count % 5 == 0 && count % 3 == 0) {
+                    printFizzBuzz.run();
+                    count++;
+                }
             }
-            mutex.unlock();
         }
 
     }
 
     // printNumber.accept(x) outputs "x", where x is an integer.
     public void number(IntConsumer printNumber) throws InterruptedException {
-        while(count<n) {
-            mutex.lock();
-            if(count%3 != 0 && count%5 != 0) {
-                printNumber.accept(count);
-                count++;
+        while(count<=n) {
+            synchronized (lock) {
+                if (count<=n && count % 3 != 0 && count % 5 != 0) {
+                    printNumber.accept(count);
+                    count++;
+                }
             }
-            mutex.unlock();
         }
     }
 
     public static void main(String[] args) throws InterruptedException {
-        FizzBuzz fb = new FizzBuzz(16);
+        FizzBuzz fb = new FizzBuzz(15);
 
         Runnable rFizz = new Runnable() {
             @Override
