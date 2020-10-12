@@ -25,7 +25,7 @@ class ListNode {
 public class AddTwoNumbers {
     // This is an iterative solution.
     // For recursive solution refer :
-    // ../../../../../../crackthecodinginterview/src/main/java/linkedlist/SumLists.java
+    // https://github.com/anjanashankar9/Coding/blob/master/crackthecodinginterview/src/main/java/linkedlist/SumLists.java
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode result = null;
         ListNode tail = null;
