@@ -74,30 +74,166 @@ public class LongestPalindromicString {
         return right-left-1;
     }
 
-    // O(N*N) solution - Expanding around middle
+    // O(N*N) solution - Dynamic Programming
     // O(N*N) space
+    /*
+    Base Case:
+    All single letter characters are palindromes.
+    dp[i][i] = true;
+    dp[i][i+1] = dp[i][i] && s[i] == s[i+1];
+
+    From here on we expand for 3 letter, 4 letter and so on palindromes.
+
+    Only one half of the dp matrix matters
+    E.g For babad
+
+    base case -  single letter palindromes
+
+             0     1     2    3    4
+             b     a     b    a    d
+
+       0 b   T
+
+       1 a         T
+
+       2 b               T
+
+       3 a                    T
+
+       4  d                        T
+
+       Step 2: 2 letter palindromes
+
+             0     1     2    3    4
+             b     a     b    a    d
+
+       0 b   T     F
+
+       1 a         T     F
+
+       2 b               T    F
+
+       3 a                    T    F
+
+       4  d                        T
+
+       Step 3: 3 letter palindromes
+
+       dp[i][j] = dp[i-1][j+1] && s[i] == s[j]
+
+             0     1     2    3    4
+             b     a     b    a    d
+
+       0 b   T     F
+
+       1 a         T     F
+
+       2 b               T    F
+
+       3 a                    T    F
+
+       4 d                        T
+
+
+      dp[2][4] = dp[3][3] && s[2] == s[4]
+      dp[1][3] = dp[2][2] && s[1] == s[3]
+      dp[0][2] = dp[1][1] && s[0] == s[2]
+
+             0     1     2    3    4
+             b     a     b    a    d
+
+       0 b   T     F     T
+
+       1 a         T     F    T
+
+       2 b               T    F    F
+
+       3 a                    T    F
+
+       4 d                        T
+
+
+       4 letter palindromes
+
+       dp[1][4] = dp[2][3] && s[1] == s[4]
+       dp[0][3] = dp[1][2] && s[0] == s[3]
+
+
+             0     1     2    3    4
+             b     a     b    a    d
+
+       0 b   T     F     T    F
+
+       1 a         T     F    T    F
+
+       2 b               T    F    F
+
+       3 a                    T    F
+
+       4 d                        T
+
+
+       5 letter palindromes
+
+       dp[0][4] = dp[1][3] && s[0] == s[4]
+
+
+             0     1     2    3    4
+             b     a     b    a    d
+
+       0 b   T     F     T    F    F
+
+       1 a         T     F    T    F
+
+       2 b               T    F    F
+
+       3 a                    T    F
+
+       4 d                        T
+
+       Traverse the array and see if j-i > end -start.
+       If yes update.
+       You can do that while filling up the array values as well.
+
+
+     */
     public String longestPalindromeDynamicProgramming(String s) {
 
         if(s == null || s.length() == 0) {
             return "";
         }
-        int len = s.length();
-        boolean[][] dp = new boolean[len][len];
+
+        int length = s.length();
+        boolean[][] dp = new boolean[length][length];
         int start = 0;
         int end = 0;
         int max = 0;
-        for(int i = 0; i < s.length(); i++) {
-            for(int j = 0; j <= i; j++) {
-                if(s.charAt(i) == s.charAt(j) && (i - j <= 2 || dp[j+1][i-1])) {
-                    dp[j][i] = true;
-                }
-                if(dp[j][i] && max < i - j + 1) {
-                    max = i - j + 1;
-                    start = j;
-                    end = i;
+
+        //base case
+        for(int i=0; i< length; i++) {
+            dp[i][i] = true;
+        }
+
+        // two letter case
+        for (int i=0; i< length-1; i++) {
+            dp[i][i+1] = dp[i][i] && (s.charAt(i) == s.charAt(i+1));
+            if(dp[i][i+1]) {
+                start = i;
+                end = i+1;
+            }
+        }
+
+        for(int d=2; d<length; d++) {
+            for(int i=0; i<length-d; i++) {
+                dp[i][i+d] = dp[i+1][i+d-1] && (s.charAt(i) == s.charAt(i+d));
+                if(dp[i][i+d]) {
+                    start = i;
+                    end = i+d;
                 }
             }
         }
+
+
         return s.substring(start, end + 1);
     }
 
