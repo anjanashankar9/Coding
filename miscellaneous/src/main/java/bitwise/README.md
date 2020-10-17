@@ -66,6 +66,7 @@
 
 
 
-#### References:<br>
-<a hef="https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/">Geeks For Geeks</a> 
+#### References
+
+<a hef="https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/">Geeks For Geeks</a><br> 
 <a hef="https://www.geeksforgeeks.org/bitwise-hacks-for-competitive-programming/">Geeks For Geeks</a> 
