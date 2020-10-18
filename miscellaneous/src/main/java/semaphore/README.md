@@ -1,3 +1,25 @@
+# Semaphores
+A sempahore is an integer variable that can be accessed only through 2 standard operations.
+wait() and signal()
+The wait() operation reduces the value of semaphore by 1 and
+the signal() operation increases the value of semaphore by 1.
+
+There are 2 types of semaphores:
+1. <b>Binary Semaphore</b><br>
+    Similar to Mutex. Can have only 2 values, 0 and 1. Its value is initialized to 1.
+    Used to implement the solution of critical section problem with multiple processes.
+2. <b>Counting Semaphore</b><br>
+    It can have a value over a range. It is used to control access to a resource that has 
+    multiple instances.    
+    
+Reference: https://www.geeksforgeeks.org/producer-consumer-problem-using-semaphores-set-1/?ref=rp
+
+## Producer Consumer Problem
+We have a buffer of fixed size. The producer can produce an item and place in the buffer.
+A consumer can pick items and consume them. 
+We need to ensure that when the producer is producing an item, then the consumer should not be consuming an item.
+i.e. buffer is the critical section.
+
 ## Dining Philosopher's Problem
  There are five silent philosophers (P1 – P5) sitting around a circular table, spending their lives eating and thinking.
  There are five forks for them to share (1 – 5) and to be able to eat,
@@ -27,4 +49,5 @@
  You can find the code <a href="DiningPhilosopherDeadlockResolved.java">here</a>.
  
  Reference: https://www.baeldung.com/java-dining-philoshophers
+    
  
