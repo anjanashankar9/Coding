@@ -20,6 +20,15 @@ A consumer can pick items and consume them.
 We need to ensure that when the producer is producing an item, then the consumer should not be consuming an item.
 i.e. buffer is the critical section.
 
+Solved this using 2 approaches.
+1. A wait notify mechanism.
+You can find the code <a href="ProducerConsumerWaitNotify.java">here</a>.
+
+2. Semaphores.
+Semaphores are not inherently thread safe. Hence the critical resource synchronization needs to be 
+taken care of by the code.
+You can find the code <a href="ProducerConsumerSemaphore.java">here</a>.
+
 ## Dining Philosopher's Problem
  There are five silent philosophers (P1 – P5) sitting around a circular table, spending their lives eating and thinking.
  There are five forks for them to share (1 – 5) and to be able to eat,
