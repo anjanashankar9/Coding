@@ -11,9 +11,6 @@ import java.util.LinkedList;
  * We need to ensure that when the producer is producing an item, then the consumer should not be consuming an item.
  * i.e. buffer is the critical section.
  *
- * To solve this problem, we need 2 counting semaphores, full and empty.
- * Full keeps track of number of items in the buffer at any given time.
- * Empty keeps track of number of unoccupied slots.
  */
 
 public class ProducerConsumerWaitNotify {
