@@ -1,18 +1,11 @@
 package medium;
 
+import helpers.TreeNode;
+
 /**
  * @Author Anjana Shankar
  * @Created 2020-09-23
  */
-
-
-//Definition for a binary tree node.
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int x) { val = x; }
-}
 
 public class FindNodeInCloneTree {
     public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
