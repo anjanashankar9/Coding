@@ -1,26 +1,11 @@
 package medium;
 
+import helpers.ListNode;
+
 /**
  * @Author Anjana Shankar
  * @Created 2020-10-12
  */
-
-/**
- * Definition for singly-linked list.
- */
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {}
-
-    ListNode(int val) { this.val = val; }
-
-    ListNode(int val, ListNode next) {
-        this.val = val; this.next = next;
-    }
-}
-
 
 public class AddTwoNumbers {
     // This is an iterative solution.
