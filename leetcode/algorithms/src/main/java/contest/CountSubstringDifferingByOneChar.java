@@ -1,5 +1,8 @@
 package contest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Author Anjana Shankar
  * @Created 2020-10-31
@@ -7,7 +10,51 @@ package contest;
 public class CountSubstringDifferingByOneChar {
     public int countSubstrings(String s, String t) {
         int possibilities=0;
+        List<String> substringS = new ArrayList<>();
+        List<String> substringT = new ArrayList<>();
+
+        generateAllSubstrings(s, substringS);
+        generateAllSubstrings(t, substringT);
+
+        for(String substrS: substringS) {
+            for (String substrT: substringT) {
+                if(substrS.length() == substrT.length()) {
+                    //compare the strings
+                    int diff = 0;
+                    for(int i=0; i<substrS.length(); i++) {
+                        if(substrS.charAt(i) != substrT.charAt(i)) {
+                            diff++;
+                            if(diff>1) {
+                                break;
+                            }
+                        }
+                    }
+                    if(diff == 1) {
+                        possibilities++;
+                    }
+                }
+            }
+        }
+
+
         return possibilities;
+    }
+
+    void generateAllSubstrings(String s, List<String> substrings) {
+        int size = 1;
+        while(size <= s.length()) {
+            for (int i = 0; (i + size) <= s.length(); i++) {
+                substrings.add(s.substring(i, size+i));
+            }
+            size++;
+        }
+    }
+
+    public static void main(String[] args) {
+        String s = "ab";
+        String t = "bb";
+
+        System.out.println(new CountSubstringDifferingByOneChar().countSubstrings(s,t));
     }
 
 }
