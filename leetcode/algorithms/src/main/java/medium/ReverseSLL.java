@@ -18,7 +18,7 @@ public class ReverseSLL {
         ListNode prev = null;
         ListNode next = null;
 
-        while(cnt < m && curr.next != null) {
+        while(cnt < m && curr != null) {
             prev = curr;
             curr = curr.next;
             cnt++;
