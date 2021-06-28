@@ -29,7 +29,6 @@ public class ParkingSystem {
                 }
                 big++;
                 return true;
-                break;
 
             case 2: //MEDIUM
                 if (medium == MAX_MEDIUM) {
@@ -37,7 +36,6 @@ public class ParkingSystem {
                 }
                 medium++;
                 return true;
-                break;
 
             case 3: //SMALL
                 if (small == MAX_SMALL) {
@@ -45,7 +43,6 @@ public class ParkingSystem {
                 }
                 small++;
                 return true;
-                break;
         }
         return false;
     }
