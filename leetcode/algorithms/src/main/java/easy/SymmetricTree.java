@@ -1,6 +1,5 @@
 package easy;
 
-import apple.laf.JRSUIUtils;
 import helpers.TreeNode;
 
 public class SymmetricTree {
